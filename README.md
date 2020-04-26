@@ -1,2 +1,2 @@
 # NeuralNetwork
-Le projet consiste à implémenter un réseau de neurones capable d’apprendre à classifierdes imagesen fonction de leurs contenus.
+Le projet consiste à implémenter un réseau de neurones capable d’apprendre à classifier des images en fonction de leurs contenus.
