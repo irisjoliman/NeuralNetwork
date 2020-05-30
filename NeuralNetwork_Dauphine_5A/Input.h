@@ -12,7 +12,8 @@ public:
 	//Constructeur & destructeur virtuels ? recherche à faire
 
 	char get_label();
-	//virtual double operator[](int indice);
+	
+	virtual double operator[](int indice) = 0;
 
 	void set_label(char lab);
 
