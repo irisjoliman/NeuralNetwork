@@ -1,26 +1,32 @@
 #include "pch.h"
 #include "NN1.h"
 #include <iostream>
+#include <string>
+#include <fstream>
 
 
 NN1::NN1()
 {
 }
 
-NN1::NN1(int taille_input, int nbr_perceptron)
+NN1::NN1(int taille_input, Fonction_activation * fnc_activation, int nbr_perceptron)
 {
-	if (taille_input != 4 || taille_input != 784) {
+	if (taille_input != 4 && taille_input != 784) {
 		throw std::string("Erreur dans la sélection de la taille d'input");
 	}
 	else {
-		/*if (nbr_perceptron != 10 || nbr_perceptron != 3) {
+		if (nbr_perceptron != 10 && nbr_perceptron != 3) {
 			throw std::string("Erreur dans le nombre de catégorie");
 		}
 		else {
-			Perceptron * 
-		}*/
+			this->nbr_perceptron = nbr_perceptron;
+			this->perceptron_list = new Perceptron[nbr_perceptron];
+			for (int i = 0; i < nbr_perceptron; i++) {
+				Perceptron p = Perceptron(taille_input, fnc_activation, i);
+				this->perceptron_list[i] = p;
+			}
+		}
 	}
-	
 }
 
 
@@ -28,18 +34,23 @@ NN1::~NN1()
 {
 }
 
-char NN1::evaluation(Input &inp)
+char NN1::evaluation(Input & input)
 {
-	/*• Une fonction evaluation qui prend en paramètre un Input (de préférence une référence), et
-qui renvoie son label (char dont la valeur est comprise entre 0 et ?? - 1) évalué en
-recherchant la plus grande valeur retournée par un des perceptrons.*/
-	return 0;
+	double max = 0;
+	int indice_max = 0;
+	for (int i = 0; i < this->nbr_perceptron; i++) {
+		double valeur = this->perceptron_list[i].forward(input);
+		if (valeur > max) {
+			max = valeur;
+			indice_max = i;
+		}
+	}
+	return(std::to_string(indice_max)[0]);
 }
 
-void NN1::apprentissage(Input &inp, double mu)
+void NN1::apprentissage(Input & input, double mu)
 {
-	/*Une fonction apprentissage qui prend en paramètre un Input et un double (correspondant au
-pas de gradient ??) et qui va appliquer l’algorithme d’apprentissage pour cet input. Chaque
-perceptron du réseau de neurones appliquera son propre algorithme d’apprentissage qui
-dépendra de la catégorie qui lui est associée.*/
+	for (int i = 0; i < this->nbr_perceptron; i++) {
+		this->perceptron_list[i].backprop(input, mu);
+	}
 }

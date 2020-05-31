@@ -4,13 +4,16 @@
 
 class Perceptron
 {
-private:
+	
+
+protected:
 	double * poids;
 	Fonction_activation * fonction_activation;
 	double delta; // stocke la valeur de 𝛿𝑘−1
 	char label;
 
 public:
+
 		Perceptron();
         Perceptron(int input_size, Fonction_activation * fnc_activation, char label);
         ~Perceptron();
@@ -23,7 +26,7 @@ public:
 
         double get_delta();
 
+		char get_label();
+
         void backprop(Input & input, double mu);
-
-
 };

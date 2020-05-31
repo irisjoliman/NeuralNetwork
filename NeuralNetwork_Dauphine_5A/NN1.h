@@ -12,19 +12,20 @@ class NN1
 		constituent le réseau de neurones.
 	*/
 private:
-	Perceptron * neural_network; // tab perceptron
+	Perceptron * perceptron_list; // tab perceptron
+	int nbr_perceptron;
 
 public:
 	// ajouter les paramètres
 	NN1();
 
-	NN1(int taille_input, int nbr_perceptron);
+	NN1(int taille_input, Fonction_activation * fnc_activation, int nbr_perceptron);
 
 	~NN1();
 
-	char evaluation(Input &inp);
+	char evaluation(Input & input);
 
-	void apprentissage(Input &inp, double mu);
+	void apprentissage(Input &input, double mu);
 
 };
 
