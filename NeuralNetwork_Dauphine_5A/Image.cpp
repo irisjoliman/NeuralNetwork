@@ -12,7 +12,7 @@ Image::Image(int imageIndice)
 	if (imageIndice <= 59999 && imageIndice >= 0) {
 		std::string path_file = "C:..\\data\\MNIST_training\\";
 		this->lecture_label(imageIndice);
-		char grey_level;
+		unsigned char grey_level;
 		try {
 			std::string pathFile = path_file + "training" + std::to_string(imageIndice);
 			std::ifstream inputFile(pathFile, std::ios::in | std::ios::binary);
@@ -20,10 +20,14 @@ Image::Image(int imageIndice)
 			if (inputFile.is_open()) {
 				inputFile.seekg(1078 * sizeof(char));
 				for (i = 0 ;i < 784; i++) {
-					inputFile.read((char *)&grey_level, sizeof(char));
-					std::string value = std::to_string(static_cast<unsigned>(grey_level));
+					if (i == 88)
+					{
+						int u = 4;
+					}
+					inputFile.read((char *)&grey_level, sizeof(unsigned char));
+					std::string value = std::to_string(grey_level);
 					this->pixel[i] = std::stod(value);
-					std::cout << std::to_string(static_cast<unsigned>(grey_level))<< "; ";
+					//std::cout << std::to_string(static_cast<unsigned>(grey_level))<< "; ";
 				}
 				inputFile.close();
 			}

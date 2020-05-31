@@ -15,12 +15,10 @@ Perceptron::Perceptron(int input_size, Fonction_activation * fnc_activation, cha
 	this->fonction_activation = fnc_activation;
 	this->label = label;
 	this->delta = 0;
-	this->poids = (double *)malloc(5 * sizeof(double));
+	this->poids = (double *)malloc(input_size * sizeof(double));
     for (int i=0; i<=input_size; i++)
     {
-		this->poids[i] = ((float(rand()) / float(RAND_MAX)) * 2) - 1;
-		std::cout << "constructeur" << this->poids[i] << std::endl;
-		//std::cout << this->poids[i] << std::endl;
+		this->poids[i] = rand() % 2 -1;
     }
 }
 
@@ -83,16 +81,14 @@ char Perceptron::get_label()
 void Perceptron::backprop(Input & input, double mu)
 {
 	int i = 0;
+	this->calcul_delta(input);
 	this->poids[0] = this->poids[0] - mu * this->get_delta();
 	//std::cout << "-------------EVALUATE--------------" << std::endl;
 	while (input[i] != -1) {
 		//std::cout << poids[i + 1] << std::endl;
-
 		this->poids[i+1] = this->poids[i+1] - mu * input[i] * this->get_delta();
 		i = i + 1;
-		
 	}	
-	this->calcul_delta(input);
-	//std::cout << "---------------------------" << std::endl;
-
+	
+	
 }

@@ -40,7 +40,7 @@ char NN1::evaluation(Input & input)
 	int indice_max = 0;
 	for (int i = 0; i < this->nbr_perceptron; i++) {
 		double valeur = this->perceptron_list[i].forward(input);
-		if (valeur > max) {
+		if (valeur >= max) {
 			max = valeur;
 			indice_max = i;
 		}

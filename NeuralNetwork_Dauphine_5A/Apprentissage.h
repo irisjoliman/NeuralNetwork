@@ -36,7 +36,7 @@ void Apprentissage<T, size, N>::apprendre_base(int K, double mu)
 		for (int i = 0; i < K; i++) {
 			int rand_number = rand() % size;
 			T input = T(rand_number);
-			this->neural_network->apprentissage(input, mu);
+			(this->neural_network)->apprentissage(input, mu);
 		}
 	}
 	else {
@@ -51,9 +51,9 @@ int Apprentissage<T, size, N>::evaluer()
 	for (int i = 0; i < size; i++) {
 		T input = T(i);
 		char label_file = input.get_label();
-		std::cout << "label file " << (int) label_file << std::endl;
+		//std::cout << "label file " << (int) label_file << std::endl;
 		char label_evalue = (this->neural_network)->evaluation(input) - 48;
-		std::cout << "label_evalue  " << (int) label_evalue << std::endl;
+		//std::cout << "label_evalue  " << (int) label_evalue << std::endl;
 		if (label_evalue == label_file) {
 			good_classif += 1;
 		}
