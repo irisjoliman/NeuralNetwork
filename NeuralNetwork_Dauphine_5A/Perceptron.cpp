@@ -59,6 +59,7 @@ double Perceptron::calcul_delta(Input & input)
 	double y = std::stod(y_str);
 
 	while (input[i] != -1) {
+		double w = this->poids[i + 1];
 		somme += this->poids[i + 1] * input[i];
 		i = i + 1;
 	}
@@ -89,6 +90,5 @@ void Perceptron::backprop(Input & input, double mu)
 		this->poids[i+1] = this->poids[i+1] - mu * input[i] * this->get_delta();
 		i = i + 1;
 	}	
-	
 	
 }

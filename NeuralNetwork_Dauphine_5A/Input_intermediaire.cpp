@@ -8,7 +8,7 @@ Input_intermediaire::Input_intermediaire()
 
 Input_intermediaire::Input_intermediaire(char label)
 {
-	this->set_label(label);
+	this->set_label(label + 48);
 	this->val_intermediaires = std::vector<double>();
 }
 

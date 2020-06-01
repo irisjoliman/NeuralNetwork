@@ -15,7 +15,6 @@ public:
 	void apprendre_base(int K, double mu);
 
 	int evaluer();
-
 };
 
 template<class T, int size, class N>

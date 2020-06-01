@@ -20,10 +20,6 @@ Image::Image(int imageIndice)
 			if (inputFile.is_open()) {
 				inputFile.seekg(1078 * sizeof(char));
 				for (i = 0 ;i < 784; i++) {
-					if (i == 88)
-					{
-						int u = 4;
-					}
 					inputFile.read((char *)&grey_level, sizeof(unsigned char));
 					std::string value = std::to_string(grey_level);
 					this->pixel[i] = std::stod(value);
